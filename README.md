@@ -47,26 +47,25 @@ This fork is compatibility packaging for Matt Pocock's [mattpocock/skills](https
 
 ```bash
 claude plugin marketplace add refo/mattpocock-skills-plugin
-claude plugin install real-engineering-skills@real-engineering-skills
+claude plugin install mattpocock-skills@mattpocock-skills
 ```
 
 ### Codex
 
 ```bash
 codex plugin marketplace add refo/mattpocock-skills-plugin --ref main
-codex plugin add real-engineering-skills@real-engineering-skills
+codex plugin add mattpocock-skills@mattpocock-skills
 ```
 
 ### Sync from upstream
 
 ```bash
-git remote add upstream https://github.com/mattpocock/skills.git
-git fetch upstream
-git merge upstream/main
-python3 scripts/generate-codex-compatibility.py
+./scripts/sync-upstream.sh
 ```
 
-The generator copies the skills listed in `.claude-plugin/plugin.json` into Codex's required flat layout. It leaves the upstream `skills/` tree untouched, translating only Claude's invocation metadata into Codex-compatible metadata in the generated copies. Commit the regenerated compatibility files with the upstream merge.
+The sync script adds the `upstream` remote when needed, merges `upstream/main`, then regenerates the Codex layer. The generator leaves the upstream `skills/` tree untouched, translates only Claude's invocation metadata into Codex-compatible metadata, and deterministically derives the Codex version from `package.json` and the current commit. Commit the regenerated compatibility files with the upstream merge.
+
+On GitHub, open **Actions → Sync upstream skills → Run workflow** to run the same update and receive the result as a pull request.
 
 ## Why These Skills Exist
 

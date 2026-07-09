@@ -5,12 +5,15 @@ from __future__ import annotations
 
 import json
 import shutil
+import subprocess
 from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parent.parent
 CLAUDE_MANIFEST = ROOT / ".claude-plugin" / "plugin.json"
-OUTPUT = ROOT / "plugins" / "real-engineering-skills" / "skills"
+CODEX_MANIFEST = ROOT / "plugins" / "mattpocock-skills" / ".codex-plugin" / "plugin.json"
+OUTPUT = CODEX_MANIFEST.parent.parent / "skills"
+PACKAGE_JSON = ROOT / "package.json"
 
 
 def adapt_invocation_metadata(skill_path: Path) -> None:
@@ -56,11 +59,29 @@ def adapt_invocation_metadata(skill_path: Path) -> None:
     )
 
 
+def stamp_codex_version() -> None:
+    """Make each generated bundle version reproducible from its Git revision."""
+    package = json.loads(PACKAGE_JSON.read_text(encoding="utf-8"))
+    base_version = package["version"].split("+", 1)[0]
+    revision = subprocess.run(
+        ["git", "rev-parse", "--short=12", "HEAD"],
+        cwd=ROOT,
+        check=True,
+        capture_output=True,
+        text=True,
+    ).stdout.strip()
+    manifest = json.loads(CODEX_MANIFEST.read_text(encoding="utf-8"))
+    manifest["version"] = f"{base_version}+codex.{revision}"
+    CODEX_MANIFEST.write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
+
+
 def main() -> None:
     manifest = json.loads(CLAUDE_MANIFEST.read_text(encoding="utf-8"))
     skills = manifest["skills"]
     if not isinstance(skills, list) or not all(isinstance(skill, str) for skill in skills):
         raise ValueError(".claude-plugin/plugin.json must contain a string skills array")
+
+    stamp_codex_version()
 
     if OUTPUT.exists():
         shutil.rmtree(OUTPUT)

@@ -1,6 +1,6 @@
 {
-  "name": "real-engineering-skills",
-  "version": "1.1.0",
+  "name": "mattpocock-skills",
+  "version": "1.1.0+codex.6375d34343c4",
   "description": "Skills for Real Engineers, compatibility-packaged from Matt Pocock's mattpocock/skills for Codex.",
   "author": {
     "name": "Matt Pocock (upstream) and fork maintainers",

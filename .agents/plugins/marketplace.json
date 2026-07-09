@@ -1,14 +1,14 @@
 {
-  "name": "real-engineering-skills",
+  "name": "mattpocock-skills",
   "interface": {
     "displayName": "Skills for Real Engineers"
   },
   "plugins": [
     {
-      "name": "real-engineering-skills",
+      "name": "mattpocock-skills",
       "source": {
         "source": "local",
-        "path": "./plugins/real-engineering-skills"
+        "path": "./plugins/mattpocock-skills"
       },
       "policy": {
         "installation": "AVAILABLE",
