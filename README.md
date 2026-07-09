@@ -63,7 +63,7 @@ codex plugin add mattpocock-skills@mattpocock-skills
 ./scripts/sync-upstream.sh
 ```
 
-The sync script adds the `upstream` remote when needed, merges `upstream/main`, then regenerates the Codex layer. The generator leaves the upstream `skills/` tree untouched, translates only Claude's invocation metadata into Codex-compatible metadata, and deterministically derives the Codex version from `package.json` and the current commit. Commit the regenerated compatibility files with the upstream merge.
+The sync script adds the `upstream` remote when needed, merges `upstream/main`, then regenerates the Codex layer. The generator leaves the upstream `skills/` tree untouched, translates only Claude's invocation metadata into Codex-compatible metadata, and deterministically derives the Codex version from `package.json` and the fetched `upstream/main` revision. Commit the regenerated compatibility files with the upstream merge.
 
 On GitHub, open **Actions → Sync upstream skills → Run workflow** to run the same update and receive the result as a pull request.
 

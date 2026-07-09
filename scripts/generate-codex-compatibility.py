@@ -60,11 +60,11 @@ def adapt_invocation_metadata(skill_path: Path) -> None:
 
 
 def stamp_codex_version() -> None:
-    """Make each generated bundle version reproducible from its Git revision."""
+    """Make each generated bundle version reproducible from upstream's revision."""
     package = json.loads(PACKAGE_JSON.read_text(encoding="utf-8"))
     base_version = package["version"].split("+", 1)[0]
     revision = subprocess.run(
-        ["git", "rev-parse", "--short=12", "HEAD"],
+        ["git", "rev-parse", "--short=12", "upstream/main"],
         cwd=ROOT,
         check=True,
         capture_output=True,
