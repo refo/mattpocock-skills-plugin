@@ -1,0 +1,5 @@
+interface:
+  display_name: "writing-great-skills"
+  short_description: "Reference for writing and editing skills well \u2014 the vocabulary and principles that make a skill predictable."
+policy:
+  allow_implicit_invocation: false

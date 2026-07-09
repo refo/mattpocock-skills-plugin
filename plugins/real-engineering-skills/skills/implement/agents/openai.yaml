@@ -1,0 +1,5 @@
+interface:
+  display_name: "implement"
+  short_description: "Implement a piece of work based on a spec or set of tickets."
+policy:
+  allow_implicit_invocation: false

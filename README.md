@@ -39,6 +39,35 @@ npx skills@latest add mattpocock/skills
 
 4. Bam - you're ready to go.
 
+## Install this fork as a plugin
+
+This fork is compatibility packaging for Matt Pocock's [mattpocock/skills](https://github.com/mattpocock/skills). It preserves the upstream skills and their MIT license while making the skills already exposed by the Claude manifest available as Claude Code and Codex plugins.
+
+### Claude Code
+
+```bash
+claude plugin marketplace add refo/mattpocock-skills-plugin
+claude plugin install real-engineering-skills@real-engineering-skills
+```
+
+### Codex
+
+```bash
+codex plugin marketplace add refo/mattpocock-skills-plugin --ref main
+codex plugin add real-engineering-skills@real-engineering-skills
+```
+
+### Sync from upstream
+
+```bash
+git remote add upstream https://github.com/mattpocock/skills.git
+git fetch upstream
+git merge upstream/main
+python3 scripts/generate-codex-compatibility.py
+```
+
+The generator copies the skills listed in `.claude-plugin/plugin.json` into Codex's required flat layout. It leaves the upstream `skills/` tree untouched, translating only Claude's invocation metadata into Codex-compatible metadata in the generated copies. Commit the regenerated compatibility files with the upstream merge.
+
 ## Why These Skills Exist
 
 I built these skills as a way to fix common failure modes I see with Claude Code, Codex, and other coding agents.

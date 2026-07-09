@@ -1,0 +1,30 @@
+{
+  "name": "real-engineering-skills",
+  "version": "1.1.0",
+  "description": "Skills for Real Engineers, compatibility-packaged from Matt Pocock's mattpocock/skills for Codex.",
+  "author": {
+    "name": "Matt Pocock (upstream) and fork maintainers",
+    "url": "https://github.com/mattpocock/skills"
+  },
+  "homepage": "https://github.com/mattpocock/skills",
+  "repository": "https://github.com/refo/mattpocock-skills-plugin",
+  "license": "MIT",
+  "keywords": [
+    "engineering",
+    "skills",
+    "matt-pocock"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Skills for Real Engineers",
+    "shortDescription": "Matt Pocock's engineering skills for Codex.",
+    "longDescription": "Compatibility packaging for Matt Pocock's mattpocock/skills. The upstream skills and MIT license are preserved.",
+    "developerName": "Matt Pocock (upstream) and fork maintainers",
+    "category": "Productivity",
+    "capabilities": [
+      "Interactive"
+    ],
+    "websiteURL": "https://github.com/mattpocock/skills",
+    "defaultPrompt": "Help me choose an engineering skill for this task."
+  }
+}

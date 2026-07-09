@@ -1,0 +1,14 @@
+{
+  "name": "real-engineering-skills",
+  "description": "Compatibility packaging for Matt Pocock's mattpocock/skills.",
+  "owner": {
+    "name": "Matt Pocock (upstream) and fork maintainers"
+  },
+  "plugins": [
+    {
+      "name": "real-engineering-skills",
+      "source": "./",
+      "description": "Skills for Real Engineers, packaged for Claude Code."
+    }
+  ]
+}
