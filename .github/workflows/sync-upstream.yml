@@ -17,7 +17,7 @@ jobs:
 
     steps:
       - name: Check out the selected branch
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0
 
@@ -29,7 +29,7 @@ jobs:
           git diff --check
 
       - name: Create or update the sync pull request
-        uses: peter-evans/create-pull-request@v7
+        uses: peter-evans/create-pull-request@v8
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           branch: codex/sync-mattpocock-skills
