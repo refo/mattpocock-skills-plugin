@@ -48,7 +48,10 @@ def adapt_invocation_metadata(skill_path: Path) -> None:
     name = metadata["name"]
     description = metadata["description"]
     agent_manifest = skill_path / "agents" / "openai.yaml"
-    agent_manifest.parent.mkdir()
+    if agent_manifest.exists():
+        # Upstream ships its own Codex metadata; keep it.
+        return
+    agent_manifest.parent.mkdir(exist_ok=True)
     agent_manifest.write_text(
         "interface:\n"
         f"  display_name: {json.dumps(name)}\n"
